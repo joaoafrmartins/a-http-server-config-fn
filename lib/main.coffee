@@ -1,3 +1,5 @@
+{ dirname, basename } = require 'path'
+
 merge = require 'lodash.merge'
 
 camelize = (str) ->
@@ -8,14 +10,36 @@ camelize = (str) ->
 
 module.exports = (config={}, options={}) ->
 
-  { file, alias, cwd } = options
+  type = undefined
 
-  cwd ?= process.env.PWD
+  { file, alias } = options
+
+  name = basename dirname dirname file
 
   if file then file = require "#{file}"
 
-  alias ?= camelize require("#{cwd}/package").name
+  if name.match(/^a-http-server-plugin-/ )isnt null
 
-    .replace(/^a-http-server-plugin-/, '')
+    type = "plugins"
 
-  config[alias] = merge config[alias] or {}, file or {}
+  else if name.match(/^a-http-server-component-/) isnt null
+
+    type = "components"
+
+  alias ?= camelize name.replace(
+
+    /^[a-http-server-plugin-|a-http-server-component-]+/, ''
+
+  )
+
+  c = merge config[alias] or {}, file or {}
+
+  if type and config[type][name]
+
+    c = merge c, config[type][name]
+
+    delete config[type][name]
+
+    config[type][alias] = c
+
+  config
