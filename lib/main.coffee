@@ -1,4 +1,4 @@
-{ dirname, basename } = require 'path'
+{ sep } = require 'path'
 
 merge = require 'lodash.merge'
 
@@ -14,7 +14,9 @@ module.exports = (config={}, options={}) ->
 
   { file, alias } = options
 
-  name = basename dirname dirname file
+  name = file.split(sep)
+
+  name = name[name.length-3]
 
   if file then file = require "#{file}"
 
