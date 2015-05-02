@@ -1,0 +1,25 @@
+{
+  "name": "a-http-server-config-fn",
+  "version": "0.0.0",
+  "main": "lib/main",
+  "description": "A Http Server Config Fn",
+  "keywords": [
+    "a",
+    "http",
+    "server",
+    "config",
+    "fn"
+  ],
+  "dependencies": {
+    "lodash.merge": ""
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/joaoafrmartins/a-http-server-config-fn",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaoafrmartins/a-http-server-config-fn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joaoafrmartins/a-http-server-config-fn/issues"
+  }
+}
