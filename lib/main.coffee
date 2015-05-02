@@ -4,7 +4,15 @@ merge = require 'lodash.merge'
 
 camelize = (str) ->
 
+  first = true
+
   str.replace /(?:^|[-_])(\w)/g, (_, c) ->
+
+    if first
+
+      first = false
+
+      return c
 
     if c then return c.toUpperCase() else return ''
 
@@ -12,7 +20,13 @@ module.exports = (config={}, options={}) ->
 
   type = undefined
 
-  { file, alias } = options
+  if typeof options is "string"
+
+    file = options
+
+  else
+
+    { file, alias } = options
 
   name = file.split(sep)
 
@@ -30,7 +44,7 @@ module.exports = (config={}, options={}) ->
 
   alias ?= camelize name.replace(
 
-    /^[a-http-server-plugin-|a-http-server-component-]+/, ''
+    /^a-http-server-[plugin|component]+-/, ''
 
   )
 
