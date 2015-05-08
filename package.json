@@ -21,5 +21,7 @@
   },
   "bugs": {
     "url": "https://github.com/joaoafrmartins/a-http-server-config-fn/issues"
-  }
+  },
+  "author": "João Afonso Martins",
+  "license": "MIT"
 }

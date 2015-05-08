@@ -58,4 +58,14 @@ module.exports = (config={}, options={}) ->
 
     config[type][alias] = c
 
+  if typeof config?.plugins?.error is "object" and c.errors
+
+    config.plugins.error.errors ?= {}
+
+    config.plugins.error.errors = merge(
+
+      c.errors, config.plugins.error.errors
+
+    )
+
   config
